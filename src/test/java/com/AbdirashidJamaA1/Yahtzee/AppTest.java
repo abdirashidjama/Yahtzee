@@ -43,4 +43,21 @@ public class AppTest extends TestCase
 		assertEquals(expectedNum, outputedNum);
 		
 	}
+	
+	public void testPlayerRecievesDiesandRollsAll(){
+		//initialize player and dies and put them in an array
+		Player player = new Player();
+		Die [] dies = new Die [3];
+		for(int i=0; i <=3; i++) {
+			dies[i] = new Die(); 
+		}
+		//player recieves the dies and rolls them all
+		player.recieveDies(dies);
+		//test all dies have initial value of 0
+		Die [] receivedDies = player.getDies();
+		assertEquals(0, receivedDies[0].getValue());
+		assertEquals(0, receivedDies[1].getValue());
+		assertEquals(0, receivedDies[2].getValue());
+		
+	}
 }
