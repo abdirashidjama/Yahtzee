@@ -10,22 +10,23 @@ import junit.framework.TestSuite;
 
 public class AppTest extends TestCase
 { 
+
 	//test that Die can be rolled and can return a value between 1 and 6
-	public void rollDieOnce() {
-		Die die = new die();
+	public void testrollDieOnce() {
+		Die die = new Die();
 		die.roll();
 		//test that first roll return a value between on and 6
 		assertTrue(die.getValue()<=6 || die.getValue()>0);
 		
 
 	}
-	public void rollDieTwoandManyTimes() {
+	public void testrollDieTwoandManyTimesTest() {
 		//Create a set that holds all possible die numbers 1 to 6 and one that we will add result from many rolls.
 		
 		Set<Integer> outputedNum = new HashSet<Integer>();
 		Set<Integer> expectedNum = new HashSet<Integer>();
 		Collections.addAll(expectedNum, 1,2,3,4,5,6);	
-		Die die = new die();
+		Die die = new Die();
 		
 		//roll twice 
 		die.roll();
