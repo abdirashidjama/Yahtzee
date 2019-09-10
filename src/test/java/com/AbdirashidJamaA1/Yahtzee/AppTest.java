@@ -51,7 +51,7 @@ public class AppTest extends TestCase
 		for(int i=0; i <=4; i++) {
 			dies[i] = new Die(); 
 		}
-		//player receives the dies and rolls them all
+		//player receives the dies
 		player.receiveDies(dies);
 		//test all dies have initial value of 0
 		Die [] receivedDies = player.getDies();
@@ -59,7 +59,27 @@ public class AppTest extends TestCase
 		assertEquals(0, receivedDies[1].getValue());
 		assertEquals(0, receivedDies[2].getValue());
 		assertEquals(0, receivedDies[3].getValue());
-		assertEquals(0, receivedDies[4].getValue());
+		assertEquals(0, receivedDies[4].getValue());	
+	}
+	
+	public void testPlayerReceivesandRollsDie(){
+		//initialize player and dies and put them in an array
+		Player player = new Player();
+		Die [] dies = new Die [5];
+		for(int i=0; i <=4; i++) {
+			dies[i] = new Die(); 
+		}
+		//player receives the dies and rolls them all
+		player.rollDies();
+		
+		Die [] rolledDies = player.getDies();
+		
+		//test all dies have a value between 1 and 6
+		assertTrue(rolledDies[0].getValue()<=6 || rolledDies[0].getValue()>0);
+		assertTrue(rolledDies[1].getValue()<=6 || rolledDies[1].getValue()>0);
+		assertTrue(rolledDies[2].getValue()<=6 || rolledDies[2].getValue()>0);
+		assertTrue(rolledDies[3].getValue()<=6 || rolledDies[3].getValue()>0);
+		assertTrue(rolledDies[4].getValue()<=6 || rolledDies[4].getValue()>0);
 		
 	}
 }
