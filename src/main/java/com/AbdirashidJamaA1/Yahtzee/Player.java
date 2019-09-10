@@ -3,19 +3,19 @@ package com.AbdirashidJamaA1.Yahtzee;
 public class Player 
 {
 
-	Die [] dies;
-	public Die [] getDies() {
-		return this.dies;
+	Die [] dice;
+	public Die [] getDice() {
+		return this.dice;
 	}
-	public void receiveDies(Die [] receivedDies) {
+	public void receiveDice(Die [] receivedDies) {
 		for(int i=0; i<=4;i++ ){
 			receivedDies[i].setValue(0);
 		}
-		this.dies = receivedDies;
+		this.dice = receivedDies;
 	}
 	public void rollDice() {
 		for(int i=0; i<=4;i++ ){
-			this.dies[i].roll();
+			this.dice[i].roll();
 		}
 	}
 }

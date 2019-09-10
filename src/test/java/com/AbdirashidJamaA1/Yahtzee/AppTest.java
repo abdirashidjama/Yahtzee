@@ -47,14 +47,14 @@ public class AppTest extends TestCase
 	public void testPlayerReceivesDies(){
 		//initialize player and dies and put them in an array
 		Player player = new Player();
-		Die [] dies = new Die [5];
+		Die [] dice = new Die [5];
 		for(int i=0; i <=4; i++) {
-			dies[i] = new Die(); 
+			dice[i] = new Die(); 
 		}
 		//player receives the dies
-		player.receiveDies(dies);
+		player.receiveDice(dice);
 		//test all dies have initial value of 0
-		Die [] receivedDies = player.getDies();
+		Die [] receivedDies = player.getDice();
 		assertEquals(0, receivedDies[0].getValue());
 		assertEquals(0, receivedDies[1].getValue());
 		assertEquals(0, receivedDies[2].getValue());
@@ -62,24 +62,27 @@ public class AppTest extends TestCase
 		assertEquals(0, receivedDies[4].getValue());	
 	}
 	
-	public void testPlayerReceivesandRollsDie(){
+	public void testPlayerReceivesandRollsDice(){
 		//initialize player and dies and put them in an array
 		Player player = new Player();
 		Die [] dies = new Die [5];
 		for(int i=0; i <=4; i++) {
 			dies[i] = new Die(); 
 		}
-		//player receives the dies and rolls them all
-		player.rollDies();
+		//player receives the dies
+		player.receiveDice(dies);
 		
-		Die [] rolledDies = player.getDies();
+		//player receives the dies and rolls them all
+		player.rollDice();
+		
+		Die [] rolledDice = player.getDice();
 		
 		//test all dies have a value between 1 and 6
-		assertTrue(rolledDies[0].getValue()<=6 || rolledDies[0].getValue()>0);
-		assertTrue(rolledDies[1].getValue()<=6 || rolledDies[1].getValue()>0);
-		assertTrue(rolledDies[2].getValue()<=6 || rolledDies[2].getValue()>0);
-		assertTrue(rolledDies[3].getValue()<=6 || rolledDies[3].getValue()>0);
-		assertTrue(rolledDies[4].getValue()<=6 || rolledDies[4].getValue()>0);
+		assertTrue(rolledDice[0].getValue()<=6 || rolledDice[0].getValue()>0);
+		assertTrue(rolledDice[1].getValue()<=6 || rolledDice[1].getValue()>0);
+		assertTrue(rolledDice[2].getValue()<=6 || rolledDice[2].getValue()>0);
+		assertTrue(rolledDice[3].getValue()<=6 || rolledDice[3].getValue()>0);
+		assertTrue(rolledDice[4].getValue()<=6 || rolledDice[4].getValue()>0);
 		
 	}
 }
