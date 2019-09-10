@@ -8,7 +8,7 @@ public class Player
 		return this.dies;
 	}
 	public void recieveDies(Die [] receivedDies) {
-		for(int i=0; i<=5;i++ ){
+		for(int i=0; i<=4;i++ ){
 			receivedDies[i].setValue(0);
 		}
 		this.dies = receivedDies;
