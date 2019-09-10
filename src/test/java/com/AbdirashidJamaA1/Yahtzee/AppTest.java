@@ -47,8 +47,8 @@ public class AppTest extends TestCase
 	public void testPlayerRecievesDiesandRollsAll(){
 		//initialize player and dies and put them in an array
 		Player player = new Player();
-		Die [] dies = new Die [3];
-		for(int i=0; i <=3; i++) {
+		Die [] dies = new Die [5];
+		for(int i=0; i <=4; i++) {
 			dies[i] = new Die(); 
 		}
 		//player recieves the dies and rolls them all
@@ -58,6 +58,8 @@ public class AppTest extends TestCase
 		assertEquals(0, receivedDies[0].getValue());
 		assertEquals(0, receivedDies[1].getValue());
 		assertEquals(0, receivedDies[2].getValue());
+		assertEquals(0, receivedDies[3].getValue());
+		assertEquals(0, receivedDies[4].getValue());
 		
 	}
 }
