@@ -10,4 +10,7 @@ public class Die
 	public void roll() {
 		this.value = (int)(Math.random()*6 +1);
 	}
+	public void setValue(int n) {
+		this.value = n;
+	}
 }
