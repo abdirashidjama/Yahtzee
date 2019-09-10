@@ -2,11 +2,12 @@ package com.AbdirashidJamaA1.Yahtzee;
 
 public class Die 
 {
-	double value;
-	public double getValue() {
+
+	int value;
+	public int getValue() {
 		return value;
 	}
 	public void roll() {
-		this.value = Math.random()*4 +1;
+		this.value = (int)(Math.random()*6 +1);
 	}
 }
