@@ -13,4 +13,9 @@ public class Player
 		}
 		this.dies = receivedDies;
 	}
+	public void rollDice() {
+		for(int i=0; i<=4;i++ ){
+			this.dies[i].roll();
+		}
+	}
 }
