@@ -44,15 +44,15 @@ public class AppTest extends TestCase
 		
 	}
 	
-	public void testPlayerRecievesDiesandRollsAll(){
+	public void testPlayerReceivesDies(){
 		//initialize player and dies and put them in an array
 		Player player = new Player();
 		Die [] dies = new Die [5];
 		for(int i=0; i <=4; i++) {
 			dies[i] = new Die(); 
 		}
-		//player recieves the dies and rolls them all
-		player.recieveDies(dies);
+		//player receives the dies and rolls them all
+		player.receiveDies(dies);
 		//test all dies have initial value of 0
 		Die [] receivedDies = player.getDies();
 		assertEquals(0, receivedDies[0].getValue());
