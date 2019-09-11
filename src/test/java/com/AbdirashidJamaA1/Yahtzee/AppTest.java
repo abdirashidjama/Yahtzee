@@ -108,7 +108,17 @@ public class AppTest extends TestCase
 		assertEquals(0, game.getPlayers()[0].getPoints());
 		assertEquals(0, game.getPlayers()[1].getPoints());
 		assertEquals(0, game.getPlayers()[2].getPoints());
-		
+	}
 	
+	public void testPlayerOneRecievesDiceFirst(){
+		//Start game
+		Game game= new Game();
+		game.start();
+		
+		//test player1 received dice
+		assertNotNull(game.getPlayers()[0].getDice());
+		//other players dont have dice
+		assertNull(game.getPlayers()[1].getDice());
+		assertNull(game.getPlayers()[2].getDice());
 	}
 }
