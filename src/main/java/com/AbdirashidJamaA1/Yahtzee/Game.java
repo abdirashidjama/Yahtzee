@@ -3,6 +3,7 @@ package com.AbdirashidJamaA1.Yahtzee;
 public class Game {
 	private Player [] players;
 	private Die [] dice;
+	private String turn;
 	Game(){
 		this.players = new Player[3];
 		this.dice = new Die[5];
@@ -25,8 +26,10 @@ public class Game {
 		for(int i=0; i <=4; i++) {
 			this.dice[i] = new Die();
 		}
-		
-
+		//Player 1 turn first
+			this.turn = "P1";
+		//Give P1 die first
+			this.players[0].receiveDice(this.dice);
 	}
 	
 	
