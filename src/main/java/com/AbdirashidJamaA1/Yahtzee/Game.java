@@ -17,7 +17,7 @@ public class Game {
 	
 	public void start() {
 		//create 3 players and 5 dice
-		for(int i=0; i <=3; i++) {
+		for(int i=0; i <=2; i++) {
 			this.players[i] = new Player();
 			this.players[i].setPoints(0);
 			

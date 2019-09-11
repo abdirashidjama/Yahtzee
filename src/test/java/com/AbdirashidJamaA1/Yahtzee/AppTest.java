@@ -97,6 +97,7 @@ public class AppTest extends TestCase
 		for(int i=0; i <=4; i++) {
 			dice[i] = new Die(); 
 		}
+		
 		//Start game
 		Game game = new Game();
 		game.setPlayers(players);
@@ -105,8 +106,8 @@ public class AppTest extends TestCase
 		
 		//test players not null
 		assertEquals(0, game.getPlayers()[0].getPoints());
-		assertEquals(0, game.getPlayers()[1].getPoints);
-		assertEquals(0, game.getPlayers()[2].getPoints);
+		assertEquals(0, game.getPlayers()[1].getPoints());
+		assertEquals(0, game.getPlayers()[2].getPoints());
 		
 	
 	}
