@@ -85,4 +85,29 @@ public class AppTest extends TestCase
 		assertTrue(rolledDice[4].getValue()<=6 || rolledDice[4].getValue()>0);
 		
 	}
+	
+	public void testGameStartsPlayerNoPoints(){
+		//set up players and dice objects
+		Player [] players = new Player [3];
+		for(int i=0; i <=2; i++) {
+			players[i] = new Player();
+		}
+		
+		Die [] dice = new Die [5];
+		for(int i=0; i <=4; i++) {
+			dice[i] = new Die(); 
+		}
+		//Start game
+		Game game = new Game();
+		game.setPlayers(players);
+		game.setDice(dice);
+		game.start();
+		
+		//test players not null
+		assertEquals(0, game.getPlayers()[0].getPoints());
+		assertEquals(0, game.getPlayers()[1].getPoints);
+		assertEquals(0, game.getPlayers()[2].getPoints);
+		
+	
+	}
 }
