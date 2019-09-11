@@ -2,7 +2,7 @@ package com.AbdirashidJamaA1.Yahtzee;
 
 public class Player 
 {
-
+	int points;
 	Die [] dice;
 	public Die [] getDice() {
 		return this.dice;
@@ -18,4 +18,7 @@ public class Player
 			this.dice[i].roll();
 		}
 	}
+	
+	public int getPoints() {return points;}
+	public void setPoints(int i) {this.points=i;}
 }
