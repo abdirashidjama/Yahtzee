@@ -122,6 +122,29 @@ public class AppTest extends TestCase
 		assertNull(game.getPlayers()[2].getDice());
 	}
 	
+	public void testDicePassedProperly(){
+		Game game= new Game();
+		game.start();
+		
+		//other players dont have dice
+		game.endTurn();
+		//player two turn only they should have the dice
+		assertNotNull(game.getPlayers()[1].getDice());
+		assertNull(game.getPlayers()[2].getDice());
+		assertNull(game.getPlayers()[0].getDice());
+		game.endTurn();
+		//Player 3's turn only they should have the dice
+		assertNotNull(game.getPlayers()[2].getDice());
+		assertNull(game.getPlayers()[1].getDice());
+		assertNull(game.getPlayers()[0].getDice());
+		game.endTurn();
+		//Player 1 turn only they should have the dice
+		assertNotNull(game.getPlayers()[0].getDice());
+		assertNull(game.getPlayers()[1].getDice());
+		assertNull(game.getPlayers()[2].getDice());
+		
+	}
+	
 	public void testTurns() {
 		Game game = new Game();
 		game.start();	
@@ -134,4 +157,5 @@ public class AppTest extends TestCase
 		game.endTurn(); // back to player 1 turn
 		assertEquals("P1", game.getTurn());
 	}
+
 }
