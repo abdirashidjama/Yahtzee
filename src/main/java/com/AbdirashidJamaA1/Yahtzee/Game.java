@@ -16,6 +16,22 @@ public class Game {
 	
 	public void setDice(Die [] d) {this.dice=d;}
 	
+	public void endTurn() {
+		//ends turn and switches it to next player
+		switch(this.turn){
+			case "P1":
+				this.turn = "P2";
+				break;
+			case "P2":
+				this.turn = "P3";
+				break;
+			case "P3":
+				this.turn = "P1";
+				break;	
+		}
+	}
+	public String getTurn() {return this.turn;}
+	
 	public void start() {
 		//create 3 players and 5 dice
 		for(int i=0; i <=2; i++) {
