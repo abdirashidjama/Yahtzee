@@ -121,4 +121,17 @@ public class AppTest extends TestCase
 		assertNull(game.getPlayers()[1].getDice());
 		assertNull(game.getPlayers()[2].getDice());
 	}
+	
+	public void testTurns() {
+		Game game = new Game();
+		game.start();	
+		//player 1 turn first
+		assertEquals("P1", game.getTurn());
+		game.endTurn(); //Player 2 turn
+		assertEquals("P2", game.getTurn());
+		game.endTurn(); //player 3 turn
+		assertEquals("P3", game.getTurn());
+		game.endTurn(); // back to player 1 turn
+		assertEquals("P1", game.getTurn());
+	}
 }
