@@ -21,12 +21,18 @@ public class Game {
 		switch(this.turn){
 			case "P1":
 				this.turn = "P2";
+				this.players[1].receiveDice(this.players[0].getDice());
+				this.players[0].giveDice();
 				break;
 			case "P2":
 				this.turn = "P3";
+				this.players[2].receiveDice(this.players[1].getDice());
+				this.players[1].giveDice();
 				break;
 			case "P3":
 				this.turn = "P1";
+				this.players[0].receiveDice(this.players[2].getDice());
+				this.players[2].giveDice();
 				break;	
 		}
 	}
