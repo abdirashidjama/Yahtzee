@@ -157,5 +157,26 @@ public class AppTest extends TestCase
 		game.endTurn(); // back to player 1 turn
 		assertEquals("P1", game.getTurn());
 	}
+	
+	public void testPlayerRerollDice() {
+		Game game = new Game();
+		game.start();
+		//p1 has dice		
+		game.getPlayers()[0].giveDice(); //sets all dice to 0 to test rolling
+		game.reroll("2 3 4"); //choose to hold inner dice should reroll outer and others should have 0
+		assertTrue(game.getDice()[1].getValue()<=6 || game.getDice()[1].getValue()>0);
+		assertTrue(game.getDice()[2].getValue()<=6 || game.getDice()[2].getValue()>0);
+		assertTrue(game.getDice()[3].getValue()<=6 || game.getDice()[3].getValue()>0);
+		assertTrue(game.getDice()[0].getValue()==0);
+		assertTrue(game.getDice()[4].getValue()==0);
+		//reroll outer dice
+		game.getPlayers()[0].giveDice();
+		game.reroll("1 5"); //choose to hold inner dice should reroll outer and others should have 0
+		assertTrue(game.getDice()[0].getValue()<=6 || game.getDice()[0].getValue()>0);
+		assertTrue(game.getDice()[4].getValue()<=6 || game.getDice()[4].getValue()>0);
+		assertTrue(game.getDice()[1].getValue()==0);
+		assertTrue(game.getDice()[2].getValue()==0);
+		assertTrue(game.getDice()[3].getValue()==0);
+	}
 
 }
