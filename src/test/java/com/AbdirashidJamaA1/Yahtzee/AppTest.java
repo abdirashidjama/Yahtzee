@@ -16,7 +16,7 @@ public class AppTest extends TestCase
 		Die die = new Die();
 		die.roll();
 		//test that first roll return a value between on and 6
-		assertTrue(die.getValue()<=6 || die.getValue()>0);
+		assertTrue(die.getValue()<=6 && die.getValue()>0);
 		
 
 	}
@@ -33,7 +33,7 @@ public class AppTest extends TestCase
 		die.roll();
 			
 		//test that value obtained after two rolls is between one and 6
-		assertTrue(die.getValue()<=6 || die.getValue()>0);
+		assertTrue(die.getValue()<=6 && die.getValue()>0);
 		
 		//Die rolled many times test that all values are returned and are between 1 and 6
 		for(int i=0; i <= 1000; i++) {
@@ -78,11 +78,11 @@ public class AppTest extends TestCase
 		Die [] rolledDice = player.getDice();
 		
 		//test all dies have a value between 1 and 6
-		assertTrue(rolledDice[0].getValue()<=6 || rolledDice[0].getValue()>0);
-		assertTrue(rolledDice[1].getValue()<=6 || rolledDice[1].getValue()>0);
-		assertTrue(rolledDice[2].getValue()<=6 || rolledDice[2].getValue()>0);
-		assertTrue(rolledDice[3].getValue()<=6 || rolledDice[3].getValue()>0);
-		assertTrue(rolledDice[4].getValue()<=6 || rolledDice[4].getValue()>0);
+		assertTrue(rolledDice[0].getValue()<=6 && rolledDice[0].getValue()>0);
+		assertTrue(rolledDice[1].getValue()<=6 && rolledDice[1].getValue()>0);
+		assertTrue(rolledDice[2].getValue()<=6 && rolledDice[2].getValue()>0);
+		assertTrue(rolledDice[3].getValue()<=6 && rolledDice[3].getValue()>0);
+		assertTrue(rolledDice[4].getValue()<=6 && rolledDice[4].getValue()>0);
 		
 	}
 	
@@ -162,21 +162,21 @@ public class AppTest extends TestCase
 		Game game = new Game();
 		game.start();
 		//p1 has dice		
-		game.getPlayers()[0].giveDice(); //sets all dice to 0 to test rolling
+		game.getPlayers()[0].receiveDice(game.getDice()); //sets all dice to 0 to test rolling
 		game.reroll("2 3 4"); //choose to hold inner dice should reroll outer and others should have 0
-		assertTrue(game.getDice()[1].getValue()<=6 || game.getDice()[1].getValue()>0);
-		assertTrue(game.getDice()[2].getValue()<=6 || game.getDice()[2].getValue()>0);
-		assertTrue(game.getDice()[3].getValue()<=6 || game.getDice()[3].getValue()>0);
-		assertTrue(game.getDice()[0].getValue()==0);
-		assertTrue(game.getDice()[4].getValue()==0);
+		assertTrue(game.getDice()[0].getValue()<=6 && game.getDice()[0].getValue()>0);
+		assertTrue(game.getDice()[4].getValue()<=6 && game.getDice()[4].getValue()>0);
+		assertEquals(0,game.getDice()[1].getValue());
+		assertEquals(0,game.getDice()[2].getValue());
+		assertEquals(0,game.getDice()[3].getValue());
 		//reroll outer dice
-		game.getPlayers()[0].giveDice();
+		game.getPlayers()[0].receiveDice(game.getDice());
 		game.reroll("1 5"); //choose to hold inner dice should reroll outer and others should have 0
-		assertTrue(game.getDice()[0].getValue()<=6 || game.getDice()[0].getValue()>0);
-		assertTrue(game.getDice()[4].getValue()<=6 || game.getDice()[4].getValue()>0);
-		assertTrue(game.getDice()[1].getValue()==0);
-		assertTrue(game.getDice()[2].getValue()==0);
-		assertTrue(game.getDice()[3].getValue()==0);
+		assertTrue(game.getDice()[1].getValue()<=6 && game.getDice()[1].getValue()>0);
+		assertTrue(game.getDice()[2].getValue()<=6 && game.getDice()[2].getValue()>0);
+		assertTrue(game.getDice()[3].getValue()<=6 && game.getDice()[3].getValue()>0);
+		assertEquals(0,game.getDice()[0].getValue());
+		assertEquals(0,game.getDice()[4].getValue());
 	}
 
 }

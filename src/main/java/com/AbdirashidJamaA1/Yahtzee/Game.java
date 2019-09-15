@@ -68,7 +68,7 @@ public class Game {
 		}
 		//Player 1 turn first
 			this.turn = "P1";
-			this.currentPlayer = players[0];
+			this.currentPlayer = this.players[0];
 		//Give P1 die first
 			this.players[0].receiveDice(this.dice);
 	}
