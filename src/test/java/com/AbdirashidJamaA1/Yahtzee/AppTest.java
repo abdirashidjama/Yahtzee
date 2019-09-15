@@ -178,5 +178,19 @@ public class AppTest extends TestCase
 		assertEquals(0,game.getDice()[0].getValue());
 		assertEquals(0,game.getDice()[4].getValue());
 	}
+	
+	public void testPlayerScoreChance() {
+		Game game = new Game();
+		game.start();
+		game.getDice()[0].setValue(1);
+		game.getDice()[1].setValue(2);
+		game.getDice()[2].setValue(3);
+		game.getDice()[3].setValue(4);
+		game.getDice()[4].setValue(5);
+		game.score(12);
+		assertEquals(15, game.getPlayers()[0].getPoints()); //test they got points added
+		assertTrue(game.getPlayers()[0].getScoreSheet().containsKey(12)); //test they have record of scorring chance
+		assertEquals(15, game.getPlayers()[0].getScoreSheet().get(12));
+	}
 
 }
