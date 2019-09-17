@@ -9,11 +9,16 @@ public class Game {
 	private Die [] dice;
 	private String turn;
 	private Player currentPlayer;
+	
 	Game(){
 		this.players = new Player[3];
 		this.dice = new Die[5];
 	}
 	public Player [] getPlayers() {return players;}
+	
+	public void score(int n) {
+		this.currentPlayer.score(n);
+	}
 	
 	public Die [] getDice() {return dice;}
 	
