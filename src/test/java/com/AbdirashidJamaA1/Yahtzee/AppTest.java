@@ -192,5 +192,35 @@ public class AppTest extends TestCase
 		assertTrue(game.getPlayers()[0].getScoreSheet().containsKey(12)); //test they have record of scorring chance
 		assertTrue(15==(game.getPlayers()[0].getScoreSheet().get(12)));
 	}
+	
+	public void testUpperSectionScore() {
+		Game game = new Game();
+		game.start();
+		game.getDice()[0].setValue(1);
+		game.getDice()[1].setValue(2);
+		game.getDice()[2].setValue(3);
+		game.getDice()[3].setValue(5);
+		game.getDice()[4].setValue(5);
+		game.score(1);
+		game.score(2);
+		game.score(3);
+		game.score(4);
+		game.score(5);
+		game.score(6);
+		//check score method works for 1-6 upper section that score exists in score card and correct score for each
+		assertEquals(16, game.getPlayers()[0].getPoints()); //test they got points added
+		assertTrue(game.getPlayers()[0].getScoreSheet().containsKey(1)); 
+		assertTrue(game.getPlayers()[0].getScoreSheet().containsKey(2));
+		assertTrue(game.getPlayers()[0].getScoreSheet().containsKey(3));
+		assertTrue(game.getPlayers()[0].getScoreSheet().containsKey(4));
+		assertTrue(game.getPlayers()[0].getScoreSheet().containsKey(5));
+		assertTrue(game.getPlayers()[0].getScoreSheet().containsKey(6));
+		assertTrue(1==(game.getPlayers()[0].getScoreSheet().get(1)));
+		assertTrue(2==(game.getPlayers()[0].getScoreSheet().get(2)));
+		assertTrue(3==(game.getPlayers()[0].getScoreSheet().get(3)));
+		assertTrue(0==(game.getPlayers()[0].getScoreSheet().get(4)));
+		assertTrue(10==(game.getPlayers()[0].getScoreSheet().get(5)));
+		assertTrue(0==(game.getPlayers()[0].getScoreSheet().get(6)));		
+	}
 
 }
