@@ -222,5 +222,32 @@ public class AppTest extends TestCase
 		assertTrue(10==(game.getPlayers()[0].getScoreSheet().get(5)));
 		assertTrue(0==(game.getPlayers()[0].getScoreSheet().get(6)));		
 	}
+	
+	public void testThreeOfAKind() {
+		//test three of a kind works identifies right number and points when it exists
+		Game game = new Game();
+		game.start();
+		game.getDice()[0].setValue(3);
+		game.getDice()[1].setValue(4);
+		game.getDice()[2].setValue(3);
+		game.getDice()[3].setValue(5);
+		game.getDice()[4].setValue(3);
+		assertEquals(9, game.getPlayers()[0].getPoints());
+		assertTrue(game.getPlayers()[0].getScoreSheet().containsKey(10)); 
+		assertTrue(9==(game.getPlayers()[0].getScoreSheet().get(10)));
+		
+		//test it works when there is no three of a kind
+		
+		game.endTurn();
+		game.getDice()[0].setValue(3);
+		game.getDice()[1].setValue(4);
+		game.getDice()[2].setValue(1);
+		game.getDice()[3].setValue(5);
+		game.getDice()[4].setValue(3);
+		assertEquals(0, game.getPlayers()[1].getPoints());
+		assertTrue(game.getPlayers()[1].getScoreSheet().containsKey(10)); 
+		assertTrue(9==(game.getPlayers()[1].getScoreSheet().get(10)));
+		
+	}
 
 }
