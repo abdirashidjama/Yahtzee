@@ -42,10 +42,29 @@ public class Player
 	
 	public void score(int i) {
 		switch(i) {
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		case 5:
+		case 6:
+			scoreUpperSection(i);
+			break;
 		case 12:
 			scoreChance();
 			break;
 		}
+	}
+	public void scoreUpperSection(int n) {
+		int p=0;
+		for(int i=0; i<5; i++) {
+			int dieValue = this.dice[i].getValue();
+			if(dieValue ==n) {
+				p=p+dieValue;
+			}
+		}
+		this.scoreSheet.put(n, p);
+		this.points=points+p;
 	}
 	public void scoreChance(){
 		int p=0;
