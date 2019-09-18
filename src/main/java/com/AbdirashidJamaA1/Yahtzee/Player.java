@@ -53,6 +53,9 @@ public class Player
 		case 10:
 			scoreThreeOfAKind();
 			break;
+		case 11:
+			scoreFourOfAKind();
+			break;
 		case 12:
 			scoreChance();
 			break;
@@ -98,4 +101,25 @@ public class Player
 		this.points=points +p;
 		
 	}
+	public void scoreFourOfAKind() {
+		//array hold 5 spots each represent the amount of die of that value exist in dice
+		int p=0;
+		boolean found= false;
+		int[] dieCount = {0,0,0,0,0};
+		for(int i=0; i<5; i++) {
+			dieCount[this.dice[i].getValue()-1]++;
+		}
+		for(int i=0; i<5; i++) {
+			if(dieCount[i]>=4) {
+				p = (i+1)*4;
+				this.points=this.points+p;
+				found=true;
+			}
+		}
+		if (!found) {
+			this.points=this.points+p;
+		}
+		this.scoreSheet.put(11, p);
+	}
+
 }
