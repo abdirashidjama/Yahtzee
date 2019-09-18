@@ -232,6 +232,7 @@ public class AppTest extends TestCase
 		game.getDice()[2].setValue(3);
 		game.getDice()[3].setValue(5);
 		game.getDice()[4].setValue(3);
+		game.score(10);
 		assertEquals(9, game.getPlayers()[0].getPoints());
 		assertTrue(game.getPlayers()[0].getScoreSheet().containsKey(10)); 
 		assertTrue(9==(game.getPlayers()[0].getScoreSheet().get(10)));
@@ -244,9 +245,10 @@ public class AppTest extends TestCase
 		game.getDice()[2].setValue(1);
 		game.getDice()[3].setValue(5);
 		game.getDice()[4].setValue(3);
+		game.score(10);
 		assertEquals(0, game.getPlayers()[1].getPoints());
 		assertTrue(game.getPlayers()[1].getScoreSheet().containsKey(10)); 
-		assertTrue(9==(game.getPlayers()[1].getScoreSheet().get(10)));
+		assertTrue(0==(game.getPlayers()[1].getScoreSheet().get(10)));
 		
 	}
 
