@@ -50,6 +50,9 @@ public class Player
 		case 6:
 			scoreUpperSection(i);
 			break;
+		case 8:
+			scoreSmallStraight();
+			break;
 		case 10:
 			scoreThreeOfAKind();
 			break;
@@ -120,6 +123,28 @@ public class Player
 			this.points=this.points+p;
 		}
 		this.scoreSheet.put(11, p);
+	}
+	public void scoreSmallStraight() {
+		int p=0;
+		int count=0;
+		int[] dieCount = {0,0,0,0,0,0}; //each number represent if the die face is present
+		for(int i=0; i<5; i++) {
+			dieCount[this.dice[i].getValue()-1]=1;
+		}
+		for(int i=0; i<6; i++) {
+			if(dieCount[i]==1) {
+				count++;
+				if(count ==4) {
+					p=30;
+					break;
+				}
+			}
+			else {
+				count=0;
+			}
+		}
+		this.points = this.points +p;
+		this.scoreSheet.put(8, p);
 	}
 
 }
