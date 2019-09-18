@@ -68,6 +68,9 @@ public class Player
 		case 12:
 			scoreChance();
 			break;
+		case 13:
+			scoreYahtzee();
+			break;
 		}
 	}
 	public void scoreUpperSection(int n) {
@@ -195,6 +198,18 @@ public class Player
 		}
 		this.points = this.points + p;
 		this.scoreSheet.put(9, p);
+	}
+	public void scoreYahtzee() {
+		int value= this.dice[0].getValue(); //value of 
+		int p=50;
+		for(int i=1; i<5; i++) {
+			if (this.dice[i].getValue()!= value) {
+				p=0;
+				break;
+			}
+		}
+		this.points = this.points + p;
+		this.scoreSheet.put(13, p);
 	}
 
 }
