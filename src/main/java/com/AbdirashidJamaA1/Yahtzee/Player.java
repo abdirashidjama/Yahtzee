@@ -50,6 +50,8 @@ public class Player
 		case 6:
 			scoreUpperSection(i);
 			break;
+		case 10:
+			scoreThreeOfAKind();
 		case 12:
 			scoreChance();
 			break;
@@ -65,6 +67,20 @@ public class Player
 		}
 		this.scoreSheet.put(n, p);
 		this.points=points+p;
+	}
+	public void scoreThreeOfAKind() {
+		//array hold 5 spots each represent the amount of die of that value exist in dice
+		int[] dieCount = {0,0,0,0,0};
+		for(int i=0; i<5; i++) {
+			dieCount[this.dice[i].getValue()-1]++;
+		}
+		for(int i=0; i<5; i++) {
+			if(dieCount[i]>=3) {
+				int p = (i+1)*3;
+				this.scoreSheet.put(10, p);
+				this.points=this.points+p;
+			}
+		}
 	}
 	public void scoreChance(){
 		int p=0;
