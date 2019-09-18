@@ -264,7 +264,7 @@ public class AppTest extends TestCase
 		game.score(11);
 		assertEquals(20, game.getPlayers()[0].getPoints());
 		assertTrue(game.getPlayers()[0].getScoreSheet().containsKey(11)); 
-		assertTrue(20==(game.getPlayers()[0].getScoreSheet().get(10)));
+		assertTrue(20==(game.getPlayers()[0].getScoreSheet().get(11)));
 		
 		//test it works when there is no Four of a kind
 		
@@ -277,8 +277,7 @@ public class AppTest extends TestCase
 		game.score(11);
 		assertEquals(0, game.getPlayers()[1].getPoints());
 		assertTrue(game.getPlayers()[1].getScoreSheet().containsKey(11)); 
-		assertTrue(0==(game.getPlayers()[1].getScoreSheet().get(11)));
-		
+		assertTrue(0==(game.getPlayers()[1].getScoreSheet().get(11)));	
 	}
 
 }
