@@ -279,5 +279,34 @@ public class AppTest extends TestCase
 		assertTrue(game.getPlayers()[1].getScoreSheet().containsKey(11)); 
 		assertTrue(0==(game.getPlayers()[1].getScoreSheet().get(11)));	
 	}
+	
+	public void testSmallStraight() {
+		Game game = new Game();
+		game.start();
+		game.getDice()[0].setValue(2);
+		game.getDice()[1].setValue(4);
+		game.getDice()[2].setValue(1);
+		game.getDice()[3].setValue(5);
+		game.getDice()[4].setValue(3);
+		game.score(8);
+		assertEquals(30, game.getPlayers()[0].getPoints());
+		assertTrue(game.getPlayers()[0].getScoreSheet().containsKey(8)); 
+		assertTrue(30==(game.getPlayers()[0].getScoreSheet().get(8)));
+		
+		//test it works when there is no Four of a kind
+		
+		game.endTurn();
+		game.getDice()[0].setValue(3);
+		game.getDice()[1].setValue(4);
+		game.getDice()[2].setValue(1);
+		game.getDice()[3].setValue(5);
+		game.getDice()[4].setValue(3);
+		game.score(8);
+		assertEquals(0, game.getPlayers()[1].getPoints());
+		assertTrue(game.getPlayers()[1].getScoreSheet().containsKey(8)); 
+		assertTrue(0==(game.getPlayers()[1].getScoreSheet().get(8)));	
+	}
+	
+	
 
 }
