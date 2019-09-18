@@ -56,6 +56,9 @@ public class Player
 		case 8:
 			scoreSmallStraight();
 			break;
+		case 9:
+			scoreFullHouse();
+			break;
 		case 10:
 			scoreThreeOfAKind();
 			break;
@@ -170,6 +173,28 @@ public class Player
 		}
 		this.points = this.points +p;
 		this.scoreSheet.put(7, p);
+	}
+	public void scoreFullHouse() {
+		int p=0;
+		boolean threeOfAKind=false;
+		boolean twoOfAKind=false;
+		int[] dieCount = {0,0,0,0,0,0}; //each number represent if the die face is present
+		for(int i=0; i<5; i++) {
+			dieCount[this.dice[i].getValue()-1]++;
+		}
+		for(int i=0; i<6; i++) {
+			if(dieCount[i]==3) {
+				threeOfAKind=true;
+			}
+			else if(dieCount[i]==2) {
+				twoOfAKind=true;
+			}
+		}
+		if(threeOfAKind&&twoOfAKind) {
+			p=25;
+		}
+		this.points = this.points + p;
+		this.scoreSheet.put(9, p);
 	}
 
 }
