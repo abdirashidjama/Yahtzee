@@ -398,7 +398,8 @@ public class AppTest extends TestCase
 		riggedScoreSheet.put(5, 15);
 		riggedScoreSheet.put(4, 16);
 		riggedScoreSheet.put(3, 9);
-		game.getPlayers()[0].setScoreSheet(riggedScoreSheet);		
+		game.getPlayers()[0].setScoreSheet(riggedScoreSheet);
+		game.getPlayers()[0].setPoints(58);
 		//current upper score at 58 with 8 from bottoms two should be at 63 qualifying player for bonus points
 		game.getDice()[0].setValue(2);
 		game.getDice()[1].setValue(2);
@@ -408,8 +409,8 @@ public class AppTest extends TestCase
 		game.score(2);
 		//total points should include bonus 101
 		//score sheet includes bonus upper score at key 14
-		assertEquals(101, game.getPlayers()[1].getPoints());
-		assertTrue(35==(game.getPlayers()[1].getScoreSheet().get(14)));
+		assertEquals(101, game.getPlayers()[0].getPoints());
+		assertTrue(35==(game.getPlayers()[0].getScoreSheet().get(14)));
 		
 	}
 
