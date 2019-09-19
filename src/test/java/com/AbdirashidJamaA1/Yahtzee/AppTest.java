@@ -3,6 +3,8 @@ package com.AbdirashidJamaA1.Yahtzee;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -386,17 +388,29 @@ public class AppTest extends TestCase
 		assertTrue(0==(game.getPlayers()[1].getScoreSheet().get(13)));	
 	}
 	
-	public void testRound() {
+	public void testUpperBonus() {
+		//case where there is an upper bonus
 		Game game = new Game();
 		game.start();
-		assertEquals(1, game.getRound());
-		game.score(10);
-		game.endTurn();
-		game.score(3);
-		game.endTurn();
-		game.score(6);
-		game.endTurn();
-		assertEquals(2, game.getRound());
+		//rig and give player 1 a scoresheet with 4 upper sections scored
+		SortedMap<Integer, Integer> riggedScoreSheet = new TreeMap<Integer, Integer>();
+		riggedScoreSheet.put(6, 18);
+		riggedScoreSheet.put(5, 15);
+		riggedScoreSheet.put(4, 16);
+		riggedScoreSheet.put(3, 9);
+		game.getPlayers()[0].setScoreSheet(riggedScoreSheet);		
+		//current upper score at 58 with 8 from bottoms two should be at 63 qualifying player for bonus points
+		game.getDice()[0].setValue(2);
+		game.getDice()[1].setValue(2);
+		game.getDice()[2].setValue(1);
+		game.getDice()[3].setValue(2);
+		game.getDice()[4].setValue(2);		
+		game.score(2);
+		//total points should include bonus 101
+		//score sheet includes bonus upper score at key 14
+		assertEquals(101, game.getPlayers()[1].getPoints());
+		assertTrue(35==(game.getPlayers()[1].getScoreSheet().get(14)));
+		
 	}
 
 }
