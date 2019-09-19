@@ -19,6 +19,9 @@ public class Player
 	public SortedMap<Integer, Integer> getScoreSheet(){
 		return scoreSheet;
 	}
+	public void setScoreSheet(SortedMap<Integer, Integer> riggedScoreSheet) {
+		this.scoreSheet=riggedScoreSheet;
+	}
 	public void giveDice(){
 		this.dice=null; 
 	}
@@ -49,6 +52,7 @@ public class Player
 		case 5:
 		case 6:
 			scoreUpperSection(i);
+			checkUpperBonus();
 			break;
 		case 7:
 			scoreLargeStraight();
@@ -210,6 +214,18 @@ public class Player
 		}
 		this.points = this.points + p;
 		this.scoreSheet.put(13, p);
+	}
+	public void checkUpperBonus() {
+		int p=0;
+		for(int i=1;i<=6;i++) {
+			if(this.scoreSheet.get(i)!=null) {
+				p=p+this.scoreSheet.get(i);
+			}
+		}
+		if(p>=63&&this.scoreSheet.get(14)==null){
+			this.points= this.points + 35;
+			this.scoreSheet.put(14, 35);
+		}
 	}
 
 }
