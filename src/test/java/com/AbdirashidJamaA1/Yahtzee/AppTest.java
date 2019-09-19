@@ -385,5 +385,18 @@ public class AppTest extends TestCase
 		assertTrue(game.getPlayers()[1].getScoreSheet().containsKey(13)); 
 		assertTrue(0==(game.getPlayers()[1].getScoreSheet().get(13)));	
 	}
+	
+	public void testRound() {
+		Game game = new Game();
+		game.start();
+		assertEquals(1, game.getRound());
+		game.score(10);
+		game.endTurn();
+		game.score(3);
+		game.endTurn();
+		game.score(6);
+		game.endTurn();
+		assertEquals(2, game.getRound());
+	}
 
 }
