@@ -92,15 +92,16 @@ public class Player
 		//array hold 5 spots each represent the amount of die of that value exist in dice
 		int p=0;
 		boolean found= false;
-		int[] dieCount = {0,0,0,0,0};
+		int[] dieCount = {0,0,0,0,0,0};
 		for(int i=0; i<5; i++) {
 			dieCount[this.dice[i].getValue()-1]++;
 		}
-		for(int i=0; i<5; i++) {
+		for(int i=0; i<6; i++) {
 			if(dieCount[i]>=3) {
-				p = (i+1)*3;
+				p=addDice();
 				this.points=this.points+p;
 				found=true;
+				break;
 			}
 		}
 		if (!found) {
@@ -117,19 +118,27 @@ public class Player
 		this.points=points +p;
 		
 	}
+	public int addDice() {
+		int p=0;
+		for(int i=0; i<5; i++) {
+			p=p+this.dice[i].getValue();
+		}
+		return p;
+	}
 	public void scoreFourOfAKind() {
-		//array hold 5 spots each represent the amount of die of that value exist in dice
+		//array hold 6 spots each represent the amount of die of that value exist in dice
 		int p=0;
 		boolean found= false;
-		int[] dieCount = {0,0,0,0,0};
+		int[] dieCount = {0,0,0,0,0,0};
 		for(int i=0; i<5; i++) {
 			dieCount[this.dice[i].getValue()-1]++;
 		}
-		for(int i=0; i<5; i++) {
+		for(int i=0; i<6; i++) {
 			if(dieCount[i]>=4) {
-				p = (i+1)*4;
+				p = addDice();
 				this.points=this.points+p;
 				found=true;
+				break;
 			}
 		}
 		if (!found) {
