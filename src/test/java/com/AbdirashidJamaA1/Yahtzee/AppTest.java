@@ -418,19 +418,19 @@ public class AppTest extends TestCase
 		Game game = new Game();
 		game.start();
 		assertEquals(1, game.getPlayers()[0].getRound());  ///player one first round
-		game.score(10);
+		game.score(100);  //faking scoring to see if rounds works
 		game.endTurn();   // he ends his turn he should be on second round
 		assertEquals(2, game.getPlayers()[0].getRound());
 		
-		game.score(3);
+		game.score(100);
 		game.endTurn();   //Player two end their turn and should be on the second round now	
 		assertEquals(2, game.getPlayers()[1].getRound());
 		
-		game.score(6);
+		game.score(100);
 		game.endTurn();
-		assertEquals(2, game.getPlayers()[2].getRound(3)); //player 3 is now on their second round
+		assertEquals(2, game.getPlayers()[2].getRound()); //player 3 is now on their second round
 		
-		game.score(2);
+		game.score(100);
 		game.endTurn();
 		assertEquals(3, game.getPlayers()[0].getRound()); //player one should be on third round now
 		
