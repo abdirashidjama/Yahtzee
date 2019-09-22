@@ -7,11 +7,13 @@ public class Player
 {
 	int points;
 	Die [] dice;
+	int round;
 	SortedMap<Integer, Integer> scoreSheet;
 	
 	Player(){
 		this.scoreSheet = new TreeMap<Integer, Integer>();
 		this.points=0;
+		this.round=1;
 	}
 	public Die [] getDice() {
 		return this.dice;
@@ -39,11 +41,12 @@ public class Player
 	public void rollDie(int i) {
 		dice[i].roll();
 	}
-	
+	public int getRound() {return round;}
 	public int getPoints() {return points;}
 	public void setPoints(int i) {this.points=i;}
 	
 	public void score(int i) {
+		this.round=this.round+1;
 		switch(i) {
 		case 1:
 		case 2:
