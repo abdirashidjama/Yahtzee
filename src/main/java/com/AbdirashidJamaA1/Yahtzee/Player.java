@@ -1,5 +1,9 @@
 package com.AbdirashidJamaA1.Yahtzee;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
@@ -9,6 +13,10 @@ public class Player
 	Die [] dice;
 	int round;
 	SortedMap<Integer, Integer> scoreSheet;
+	private Client clientplayer;
+	private int pID;
+	private int otherID;
+	private int otherOtherID;
 	
 	Player(){
 		this.scoreSheet = new TreeMap<Integer, Integer>();
@@ -239,5 +247,44 @@ public class Player
 			this.scoreSheet.put(14, 35);
 		}
 	}
+	//client and networking code
+	public void connectToServer(int port) {
+		clientplayer = new Client("localhost", port);
+	}
+	
+	private class Client {
+		private Socket socket;
+		private DataInputStream input;
+		private DataOutputStream out;
+		
+		public Client(String address, int port) {
+			System.out.println("attempting to connect to port " + port);
+			try {
+				socket = new Socket(address, port);
+				input = new DataInputStream(socket.getInputStream());
+				out = new DataOutputStream(socket.getOutputStream());
+				pID = input.readInt();
+				System.out.println("Connected to server as Player " + pID );
+				
+				if(pID==1) {
+					System.out.println("Your first roll the die");
+				}
+				else{
+					System.out.println("Await first player turn");
+				}
+			}
+			catch(IOException i) {
+				System.out.println(i);
+			}
+		}
+		
+	}
+	
+	public static void main(String [] args) {
+		int port = Integer.parseInt(args[0]);
+		Player p = new Player();
+		p.connectToServer(port);
+	}
+	
 
 }
