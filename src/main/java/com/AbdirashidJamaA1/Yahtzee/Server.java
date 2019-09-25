@@ -100,15 +100,19 @@ public class Server {
 
 				//out.writeUTF(scoreboard);
 				//out.flush();
+				String clear="";
+				for(int i=0; i<30; i++) {
+					clear=clear + '\n';
+				}
 				
 				String enter = "Press <<ENTER>> to roll the dice ...";
 				while(true) {
 					String scoreboard= "--------------------------- "+ "\n"
-							+ "Name: " + p1.name + "\n"
+							+ "Name: " + p1.name + "     "
 							+ game.getPlayers()[0].printScore()
-							+ "Name: " + p2.name + "\n"
+							+ "Name: " + p2.name + "     "
 							+ game.getPlayers()[1].printScore()
-							+ "Name: " + p3.name + "\n"
+							+ "Name: " + p3.name + "     "
 							+ game.getPlayers()[2].printScore();
 					int enterpressed=0;
 					
@@ -157,7 +161,12 @@ public class Server {
 							
 						}
 						else {
-							
+							//out.writeUTF("");
+							//out.flush();
+							//out.writeUTF(scoreboard + "\n");
+							//out.flush();
+							//out.writeUTF("");
+							//out.flush();
 						}	
 					}
 					else if(turn.get()==2) {
@@ -196,6 +205,9 @@ public class Server {
 							}
 							
 						}
+						else {
+							
+						}	
 					}
 					else if(turn.get()==3) {
 						if(pID==3) {
@@ -220,7 +232,7 @@ public class Server {
 							int choicenumber =0;
 							while(true) {
 								choicenumber = in.readInt();
-								if(choicenumber==3) {
+								if(choicenumber==3||choicenumber==2) {
 									break;
 								}
 							}
@@ -228,15 +240,39 @@ public class Server {
 								out.writeUTF("What category do you want to score this round against? (Please enter the category number) ");
 								game.score(in.readInt());
 								game.endTurn();
-								if(game.getPlayers()[2].getRound()==14) {
-									System.out.print("game over player " + " wins");   //make a game.getwinner();
+								if(game.getPlayers()[2].getRound()==13) {
+									Player winner=null;
+									String winnername=null;
+									if(game.getPlayers()[0].getPoints()>game.getPlayers()[1].getPoints()&&game.getPlayers()[0].getPoints()>game.getPlayers()[2].getPoints()) {
+										winner=game.getPlayers()[0];
+										name=p1.name;
+									}
+									else if(game.getPlayers()[1].getPoints()>game.getPlayers()[2].getPoints()&&game.getPlayers()[1].getPoints()>game.getPlayers()[0].getPoints()) {
+										winner=game.getPlayers()[1];
+										name=p2.name;
+									}
+									else {
+										winner=game.getPlayers()[2];
+										name=p3.name;
+									}
+									System.out.print("game over player " + name + " wins with "+ winner.getPoints());   //make a game.getwinner();
 								}
-								System.out.println("Player 3 has completed their turn");
-								turn.decrementAndGet();
-								turn.decrementAndGet();
+								else {
+									System.out.println("Player 3 has completed their turn");
+									System.out.println("Round "+(game.getPlayers()[2].getRound()-1) + " complete");
+									System.out.println("");
+									turn.decrementAndGet();
+									turn.decrementAndGet();
+								}
+							}
+							else if(choicenumber ==2) {
+								
 							}
 							
 						}
+						else {
+							
+						}	
 					}
 					
 				}

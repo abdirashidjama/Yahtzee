@@ -302,8 +302,17 @@ public class Player
 					//System.out.flush();
 					//System.out.println(input.readUTF()); //scoreboard
 					while(true) {
-						try {
-							System.out.println(input.readUTF());    //enter and scoreboard
+						try {  //check if other player if it is restart loop
+							//boolean other=false;
+							String scoreboard=input.readUTF();
+							//if(scoreboard.equals("")) {
+							//	other=true;
+							//}
+							System.out.println(scoreboard);    //enter and scoreboard
+							//if(other) {
+							//	input.readUTF();
+							//	continue;
+							//}
 							String enter= "sdfjnksdf";
 							while(true) {
 								//System.out.println("");
