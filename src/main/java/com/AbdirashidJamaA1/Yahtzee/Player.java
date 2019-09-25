@@ -2,8 +2,10 @@ package com.AbdirashidJamaA1.Yahtzee;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.EOFException;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.Scanner;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
@@ -17,6 +19,7 @@ public class Player
 	private int pID;
 	private int otherID;
 	private int otherOtherID;
+	private String name;
 	
 	Player(){
 		this.scoreSheet = new TreeMap<Integer, Integer>();
@@ -247,6 +250,27 @@ public class Player
 			this.scoreSheet.put(14, 35);
 		}
 	}
+	
+	public String printDice() {
+		return "Your rolled: | " + this.dice[0].getValue() + " | " + this.dice[1].getValue() + " | " + this.dice[2].getValue() + " | " + this.dice[3].getValue() + " | " + this.dice[4].getValue() + " | ";
+	}
+	
+	public String printScore() {
+		String[] scores = new String[15];
+		for(int i = 1; i < 15; i++) {
+			if(this.scoreSheet.containsKey(i)) {
+				scores[i] = String.valueOf(scoreSheet.get(i));
+			}
+			else {
+				scores[i] = "";
+			}
+		}
+		return "          | current Score: " + this.getPoints()+ "   | Current Round: "+ this.getRound() + "\n"
+				+ "(1) Ones: " + scores[1] + " (2) Twos: " + scores[2] + "(3) Threes: "  + scores[3] + " (4) Fours: " + scores[4] + " (5) fives: " + scores[5] + " (6) Sixes: " + scores[6] + "  | Bonus: " + scores[14] + "\n"
+				+ "(7) Large Straight: " + scores[7] + "(8) Small Striaght: " + scores[8] + "(9) Full House: " + scores[9] + "(10) Three of a Kind: " + scores[10] + "\n"
+				+ "(11) Four of a Kind: " + scores[11] + " (12) Chance: " + scores[12] + " (13) Yahtzee: "  + scores[13] + "\n"
+				+ "--------------------------- " +"\n";
+	}
 	//client and networking code
 	public void connectToServer(int port) {
 		clientplayer = new Client("localhost", port);
@@ -256,6 +280,7 @@ public class Player
 		private Socket socket;
 		private DataInputStream input;
 		private DataOutputStream out;
+		private Scanner scanner;
 		
 		public Client(String address, int port) {
 			System.out.println("attempting to connect to port " + port);
@@ -263,14 +288,68 @@ public class Player
 				socket = new Socket(address, port);
 				input = new DataInputStream(socket.getInputStream());
 				out = new DataOutputStream(socket.getOutputStream());
+				scanner = new Scanner(System.in);
 				pID = input.readInt();
-				System.out.println("Connected to server as Player " + pID );
 				
-				if(pID==1) {
-					System.out.println("Your first roll the die");
-				}
-				else{
-					System.out.println("Await first player turn");
+				//Get names send them to server
+				System.out.println("Welcome player " + pID + " Please enter your name" );
+				name = scanner.nextLine();
+				out.writeUTF(name);
+				out.flush();
+				
+				//System.out.flush();
+				while(true) {
+					//System.out.flush();
+					//System.out.println(input.readUTF()); //scoreboard
+					while(true) {
+						try {
+							System.out.println(input.readUTF());    //enter and scoreboard
+							String enter= "sdfjnksdf";
+							while(true) {
+								//System.out.println("");
+								//System.out.print(enter);
+								enter = scanner.nextLine();   ///enter
+								if(enter.equals(" ")) {
+									out.writeInt(100);
+									out.flush();
+									break;
+								}
+							}
+							
+							if(enter.equals(" ")) {
+								//out.writeInt(100);
+								//out.flush();
+								System.out.println(input.readUTF()); //rolled die and choices
+								try {
+									int choice = scanner.nextInt();
+									while(true){   //only breaks at choice
+										if(choice==3) {
+											out.writeInt(choice);
+											out.flush();
+											System.out.println(input.readUTF()); 
+											int category = scanner.nextInt();
+											out.writeInt(category);
+											out.flush();
+											break;
+										}
+										else if(choice==2) {
+											System.out.println(input.readUTF()); 
+										}
+										else {
+										
+										}
+									}
+									
+								}
+								catch(EOFException e) {
+							
+								}
+							}
+						}
+						catch(EOFException e) {
+							System.out.println(e);
+						}
+					}	
 				}
 			}
 			catch(IOException i) {
