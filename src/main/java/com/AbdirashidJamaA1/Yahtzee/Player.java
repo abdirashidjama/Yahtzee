@@ -330,6 +330,7 @@ public class Player
 								//out.flush();
 								System.out.println(input.readUTF()); //rolled die and choices
 								try {
+<<<<<<< HEAD
 									int choice = scanner.nextInt();
 									while(true){   //only breaks at choice
 										if(choice==3) {
@@ -340,12 +341,36 @@ public class Player
 											out.writeInt(category);
 											out.flush();
 											break;
+=======
+									
+									while(true){   //only breaks at choice
+										int choice = scanner.nextInt();
+										if(choice==3) {
+											out.writeInt(choice);
+											out.flush();
+											System.out.println(input.readUTF());
+											while(true){
+												int category = scanner.nextInt();
+												if(category>13 || category<0) {
+													System.out.println("invalid category please enter another");
+												}
+												else {
+													out.writeInt(category);
+													out.flush();
+												}
+											break;
+											}
+>>>>>>> Networking: added error checking
 										}
 										else if(choice==2) {
 											System.out.println(input.readUTF()); 
 										}
 										else {
+<<<<<<< HEAD
 										
+=======
+											System.out.println("Invalid choice please enter another number."); 
+>>>>>>> Networking: added error checking
 										}
 									}
 									
