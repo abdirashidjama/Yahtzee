@@ -325,60 +325,45 @@ public class Player
 								}
 							}
 							
+
 							if(enter.equals(" ")) {
-								//out.writeInt(100);
-								//out.flush();
-								System.out.println(input.readUTF()); //rolled die and choices
-								try {
-<<<<<<< HEAD
-									int choice = scanner.nextInt();
-									while(true){   //only breaks at choice
-										if(choice==3) {
-											out.writeInt(choice);
-											out.flush();
-											System.out.println(input.readUTF()); 
-											int category = scanner.nextInt();
-											out.writeInt(category);
-											out.flush();
-											break;
-=======
-									
-									while(true){   //only breaks at choice
-										int choice = scanner.nextInt();
-										if(choice==3) {
-											out.writeInt(choice);
-											out.flush();
-											System.out.println(input.readUTF());
-											while(true){
-												int category = scanner.nextInt();
-												if(category>13 || category<0) {
-													System.out.println("invalid category please enter another");
+												//out.writeInt(100);
+												//out.flush();
+												System.out.println(input.readUTF()); //rolled die and choices
+												try {
+													
+													while(true){   //only breaks at choice
+														int choice = scanner.nextInt();
+														if(choice==3) {
+															out.writeInt(choice);
+															out.flush();
+															System.out.println(input.readUTF());
+															while(true){
+																int category = scanner.nextInt();
+																if(category>13 || category<0) {
+																	System.out.println("invalid category please enter another");
+																}
+																else {
+																	out.writeInt(category);
+																	out.flush();
+																}
+															break;
+															}
+														}
+														else if(choice==2) {
+															System.out.println(input.readUTF());
+															
+														}
+														else {
+															System.out.println("Invalid choice please enter another number."); 
+														}
+													}
+													
 												}
-												else {
-													out.writeInt(category);
-													out.flush();
+												catch(EOFException e) {
+											
 												}
-											break;
 											}
->>>>>>> Networking: added error checking
-										}
-										else if(choice==2) {
-											System.out.println(input.readUTF()); 
-										}
-										else {
-<<<<<<< HEAD
-										
-=======
-											System.out.println("Invalid choice please enter another number."); 
->>>>>>> Networking: added error checking
-										}
-									}
-									
-								}
-								catch(EOFException e) {
-							
-								}
-							}
 						}
 						catch(EOFException e) {
 							System.out.println(e);

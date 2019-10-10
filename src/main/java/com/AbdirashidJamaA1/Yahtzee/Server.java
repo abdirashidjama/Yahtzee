@@ -240,11 +240,7 @@ public class Server {
 								out.writeUTF("What category do you want to score this round against? (Please enter the category number) ");
 								game.score(in.readInt());
 								game.endTurn();
-<<<<<<< HEAD
-								if(game.getPlayers()[2].getRound()==13) {
-=======
 								if(game.getPlayers()[2].getRound()==14) {
->>>>>>> Networking: added error checking
 									Player winner=null;
 									String winnername=null;
 									if(game.getPlayers()[0].getPoints()>game.getPlayers()[1].getPoints()&&game.getPlayers()[0].getPoints()>game.getPlayers()[2].getPoints()) {
