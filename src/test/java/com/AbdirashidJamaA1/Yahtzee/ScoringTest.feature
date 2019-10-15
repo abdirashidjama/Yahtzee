@@ -39,8 +39,24 @@ Feature: Scoring
 
     Examples: 
       | dice      | score | points  |
+      #ones
+      | 2,2,3,4,5 |     1 | 0       |
       | 1,2,3,4,5 |     1 | 1       |
+      #twos
+      | 1,4,3,4,5 |     2 | 0       |
       | 1,2,3,4,5 |     2 | 2       |
+      #threes
+      | 1,4,1,4,5 |     3 | 0       |
+      | 1,2,3,4,5 |     3 | 3       |
+      #fours
+      | 1,2,1,2,5 |     4 | 0       |
+      | 1,2,3,4,5 |     4 | 4       |
+      #five
+      | 1,4,1,4,1 |     5 | 0       |
+      | 1,2,3,4,5 |     5 | 5       |
+      #six
+      | 1,4,1,4,5 |     6 | 0       |
+      | 1,2,6,4,5 |     6 | 6       |
 
 
   Scenario Outline: test 3 of a kind
@@ -95,14 +111,34 @@ Feature: Scoring
       | 3,4,1,5,3 |     7  | 0       |
       | 4,2,6,5,3 |     7  | 40      |
       
-  Scenario Outline: test Yahtzee
+  Scenario Outline: test first Yahtzee
     Given I recieve these <dice>
     When I choose category <score> to score in
     Then I get <points>
 
     Examples: 
       | dice      | score  | points  |
-      | 3,4,1,5,3 |     10 | 0       |
-      | 3,4,3,5,3 |     10 | 18      |
+      | 3,4,1,5,3 |     13 | 0       |
+      | 5,5,5,5,5 |     13 | 50      |
+      
+  Scenario Outline: test chance
+    Given I recieve these <dice>
+    When I choose category <score> to score in
+    Then I get <points>
+
+    Examples: 
+      | dice      | score  | points  |
+      | 3,4,1,5,3 |     12 | 16      |
+      | 1,2,3,4,5 |     12 | 15      |
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
  
