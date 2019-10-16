@@ -31,23 +31,5 @@ public class ScoreNoRerollDefinitions extends AbstractGameStepDefinition {
 		// Write code here that turns the phrase above into concrete actions
 		assertNotNull(game.getPlayers()[0].getScoreSheet().get(int1));
 	}
-	/*
-	 * @Given("I recieve dice") public void i_recieve_dice() { // Write code here
-	 * that turns the phrase above into concrete actions assertEquals(0,
-	 * game.getDice()[0].getValue()); }
-	 * 
-	 * @When("I roll dice") public void i_roll_dice() { // Write code here that
-	 * turns the phrase above into concrete actions game.getPlayers()[0].rollDice();
-	 * } /*
-	 * 
-	 * @When("player choose <category> to score in") public void
-	 * player_choose_category_to_score_in() { // Write code here that turns the
-	 * phrase above into concrete actions throw new cucumber.api.PendingException();
-	 * }
-	 * 
-	 * @Then("player get points for that <category>") public void
-	 * player_get_points_for_that_category() { // Write code here that turns the
-	 * phrase above into concrete actions throw new cucumber.api.PendingException();
-	 * }
-	 */
+
 }

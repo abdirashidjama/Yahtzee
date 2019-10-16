@@ -16,8 +16,9 @@
 #""
 ## (Comments)
 #Sample Feature Definition Template
-@tag
-Feature: rerolls and Scorring
+
+@rerolls
+Feature: rerolls and Scoring
 	I want to use this template for my feature file
     Scenario Outline: test one reroll and score dice
       Given player recieves dice
@@ -74,31 +75,39 @@ Feature: rerolls and Scorring
       Then player get points for that <category>
       
       Examples: 
-        | holds | category|
-        |  1    | 1       |
-        |  1,2  | 2       |
-        |1,2,3  | 3       |
-        #|1,2,3,4| 4       |
-        #|2,3,4,5| 5       |
-        |1,4    | 6       |
-        |1,3    | 7       |
-        |1,5    | 8       |
-        |2,3    | 8       |
-        |2,4    | 10      |
-        |2,5    | 11      |s
-        |3,4,5  | 12      |
-        |5,4    | 13      |
-      
-    Scenario Outline: test hold four dice reroll one
-      Given player recieves dice and <hold> four
-      When player rolls the four other dice that are not among the <hold>
+        | holds     | category|
+        |  1        | 1       |
+        |  1,2      | 2       |
+        |1,2,3      | 3       |
+        |1, 2, 3, 4 | 4       |
+        |2, 3, 4, 5 | 5       |
+        |1,4        | 6       |
+        |1,3        | 7       |
+        |1,5        | 8       |
+        |2,3        | 8       |
+        |2,4        | 10      |
+        |2,5        | 11      |
+        |3,4,5      | 12      |
+        |5,4        | 13      |
+        
+    Scenario Outline: test reroll less than five dice twice
+      Given player recieves dice and <holds> a couple
+      When player rolls the other dice that are not among the <holds>
+      And player recieves dice and <holds2> a couple
+      And player rolls the other dice that are not among the <holds2>
       And player choose <category> to score in
       Then player get points for that <category>
       
       Examples: 
-        | hold      | category| 
-        |2,3,4,5    | 5       |
-        |1,3,4,5    | 5       |
+        | holds     | holds2    | category|
+        |  1        |    1      | 1       |
+        |  1        |   3,4     | 2       |
+        |  2        |   2,3,4   | 3       |
+        |  4        |1, 2, 3, 4 | 4       |
+        |2,3        | 2,3,4     | 5       |
+        |1,4        |2, 3, 4, 5 | 6       |
+        |3,4,5      |     1     | 12      |
+        |5,4        |    2,3    | 13      |
 
       
       

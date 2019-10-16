@@ -5,8 +5,7 @@
 #Given: Some precondition step
 #When: Some key actions
 #Then: To observe outcomes or validation
-#And,But: To enumerate more Given,When,Then steps
-#Scenario Outline: List of steps for data-driven as an Examples and <placeholder>
+#And,But: To enumerate more Given,When,Then steps#Scenario Outline: List of steps for data-driven as an Examples and <placeholder>
 #Examples: Container for s table
 #Background: List of steps run before each of the scenarios
 #""" (Doc Strings)
@@ -41,22 +40,45 @@ Feature: Scoring
       | dice      | score | points  |
       #ones
       | 2,2,3,4,5 |     1 | 0       |
-      | 1,2,3,4,5 |     1 | 1       |
+      | 1,2,1,4,5 |     1 | 2       |
+      | 1,2,1,4,1 |     1 | 3       |
+      | 1,1,3,1,1 |     1 | 4       |
+      | 1,1,1,1,1 |     1 | 5       |
       #twos
       | 1,4,3,4,5 |     2 | 0       |
       | 1,2,3,4,5 |     2 | 2       |
+      | 1,2,3,2,5 |     2 | 4       |
+      | 2,2,3,4,2 |     2 | 6       |
+      | 2,2,2,4,2 |     2 | 8       |
+      | 2,2,2,2,2 |     2 | 10       |
       #threes
       | 1,4,1,4,5 |     3 | 0       |
       | 1,2,3,4,5 |     3 | 3       |
+      | 1,2,3,4,3 |     3 | 6       |
+      | 3,2,3,4,3 |     3 | 9       |
+      | 3,3,3,4,3 |     3 | 12      |
+      | 3,3,3,3,3 |     3 | 15      |
       #fours
       | 1,2,1,2,5 |     4 | 0       |
       | 1,2,3,4,5 |     4 | 4       |
+      | 1,4,3,4,5 |     4 | 8       |
+      | 4,2,4,4,5 |     4 | 12      |
+      | 4,4,4,4,5 |     4 | 16      |
+      | 4,4,4,4,4 |     4 | 20      |
       #five
       | 1,4,1,4,1 |     5 | 0       |
-      | 1,2,3,4,5 |     5 | 5       |
+      | 1,1,3,4,5 |     5 | 5       |
+      | 1,2,3,5,5 |     5 | 10      |
+      | 1,5,3,5,5 |     5 | 15      |
+      | 5,2,5,5,5 |     5 | 20      |
+      | 5,5,5,5,5 |     5 | 25      |
       #six
       | 1,4,1,4,5 |     6 | 0       |
       | 1,2,6,4,5 |     6 | 6       |
+      | 1,2,6,6,5 |     6 | 12       |
+      | 6,2,6,6,5 |     6 | 18      |
+      | 6,6,6,4,6 |     6 | 24      |
+      | 6,6,6,6,6 |     6 | 30      |
 
 
   Scenario Outline: test 3 of a kind
