@@ -235,15 +235,8 @@ public class Player
 				break;
 			}
 		}
-		if(this.scoreSheet.get(13)!=null&&p!=0) {
-			p=p+50;
-			this.points = this.points + p;
-			this.scoreSheet.put(15, p);
-		}
-		else {
-			this.points = this.points + p;
-			this.scoreSheet.put(13, p);
-		}
+		this.points = this.points + p;
+		this.scoreSheet.put(13, p);
 	}
 	public void checkUpperBonus() {
 		int p=0;
@@ -309,14 +302,21 @@ public class Player
 					//System.out.flush();
 					//System.out.println(input.readUTF()); //scoreboard
 					while(true) {
-						try { 
+						try {  //check if other player if it is restart loop
+							//boolean other=false;
 							String scoreboard=input.readUTF();
-
+							//if(scoreboard.equals("")) {
+							//	other=true;
+							//}
 							System.out.println(scoreboard);    //enter and scoreboard
-
-							String enter;//= "sdfjnksdf";
+							//if(other) {
+							//	input.readUTF();
+							//	continue;
+							//}
+							String enter= "sdfjnksdf";
 							while(true) {
-
+								//System.out.println("");
+								//System.out.print(enter);
 								enter = scanner.nextLine();   ///enter
 								if(enter.equals(" ")) {
 									out.writeInt(100);
@@ -325,46 +325,35 @@ public class Player
 								}
 							}
 							
-
 							if(enter.equals(" ")) {
-												//out.writeInt(100);
-												//out.flush();
-												//System.out.println(input.readUTF()); //rolled die and choices
-												try {		
-													while(true){   //only breaks at choice
-														System.out.println(input.readUTF()); //rolled die and choices
-														int choice = scanner.nextInt();
-														if(choice==3) {
-															out.writeInt(choice);
-															out.flush();
-															System.out.println(input.readUTF());
-															while(true){
-																int category = scanner.nextInt();
-																if(category>13 || category<0) {
-																	System.out.println("invalid category please enter another");
-																}
-																else {
-																	out.writeInt(category);
-																	out.flush();
-																}
-															break;
-															}
-														}
-														else if(choice==2) {
-															System.out.println(input.readUTF());
-															continue;
-															
-														}
-														else {
-															System.out.println("Invalid choice please enter another number."); 
-														}
-													}
-													
-												}
-												catch(EOFException e) {
-											
-												}
-											}
+								//out.writeInt(100);
+								//out.flush();
+								System.out.println(input.readUTF()); //rolled die and choices
+								try {
+									int choice = scanner.nextInt();
+									while(true){   //only breaks at choice
+										if(choice==3) {
+											out.writeInt(choice);
+											out.flush();
+											System.out.println(input.readUTF()); 
+											int category = scanner.nextInt();
+											out.writeInt(category);
+											out.flush();
+											break;
+										}
+										else if(choice==2) {
+											System.out.println(input.readUTF()); 
+										}
+										else {
+										
+										}
+									}
+									
+								}
+								catch(EOFException e) {
+							
+								}
+							}
 						}
 						catch(EOFException e) {
 							System.out.println(e);

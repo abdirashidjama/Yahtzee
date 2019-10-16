@@ -62,8 +62,6 @@ public class Server {
 		
 	}
 	
-	
-	
 	public class ServerConnection implements Runnable{
 		private Socket socket;
 		private DataInputStream in;
@@ -92,9 +90,16 @@ public class Server {
 				System.out.println( name + " has joined the game");
 				names.getAndIncrement();
 				while(names.get()<=2) {
-
+					//loop till all names are given
 				}
 
+				
+				
+				
+				
+
+				//out.writeUTF(scoreboard);
+				//out.flush();
 				String clear="";
 				for(int i=0; i<30; i++) {
 					clear=clear + '\n';
@@ -114,38 +119,160 @@ public class Server {
 					if(turn.get()==1)
 					{
 						if(pID==1) {
-							move();
-						}
-					}
-					else if(turn.get()==2) {
-						if(pID==2) {
-							move();
-						}
+
+							out.writeUTF(scoreboard + "\n" + enter);
+							out.flush();
+							
+							while(true) {
+								enterpressed = in.readInt();
+								if(enterpressed==100) {
+									break;
+								}
+							}
 						
-					}
-					else if(turn.get()==3) {
-						if(pID==3) {
-							move();
-							if(game.getPlayers()[2].getRound()==14) {
-								Player winner=null;
-								String winnername=null;
-								if(game.getPlayers()[0].getPoints()>game.getPlayers()[1].getPoints()&&game.getPlayers()[0].getPoints()>game.getPlayers()[2].getPoints()) {
-									winner=game.getPlayers()[0];
-									name=p1.name;
+							String choice="What action would you like to perform next?"+"\n"
+								+ "(1) Select dice to hold, and then re-roll the other dice" +"\n"
+								+ "(2) Re-roll all the dice?" +"\n"
+								+ "(3) Score this round?" +"\n";
+							game.getPlayers()[pID-1].rollDice();
+							String dice= game.getPlayers()[pID-1].printDice();
+							out.writeUTF(dice + "\n" + choice);
+							out.flush();
+							int choicenumber =0;
+							while(true) {
+								choicenumber = in.readInt();
+								if(choicenumber==3) {
+									break;
 								}
-								else if(game.getPlayers()[1].getPoints()>game.getPlayers()[2].getPoints()&&game.getPlayers()[1].getPoints()>game.getPlayers()[0].getPoints()) {
-									winner=game.getPlayers()[1];
-									name=p2.name;
-								}
-								else {
-									winner=game.getPlayers()[2];
-									name=p3.name;
-								}
-								System.out.print("game over player " + name + " wins with "+ winner.getPoints());   //make a game.getwinner();
+							}
+							if(choicenumber==3) {	
+								out.writeUTF("What category do you want to score this round against? (Please enter the category number) ");
+								game.score(in.readInt());
+								game.endTurn();
+								System.out.println("Player 1 has completed their turn");
+								turn.incrementAndGet();	
+							}
+							else if(choicenumber==2) {
+								game.getPlayers()[pID-1].rollDice();
+								dice= game.getPlayers()[pID-1].printDice();
+								out.writeUTF(dice + "\n" + choice);
+								out.flush();
 							}
 							
 						}
+						else {
+							//out.writeUTF("");
+							//out.flush();
+							//out.writeUTF(scoreboard + "\n");
+							//out.flush();
+							//out.writeUTF("");
+							//out.flush();
+						}	
+					}
+					else if(turn.get()==2) {
+						if(pID==2) {
+							out.writeUTF(scoreboard + "\n" + enter);
+							out.flush();
+							
+							while(true) {
+								enterpressed = in.readInt();
+								if(enterpressed==100) {
+									break;
+								}
+							}
 						
+							String choice="What action would you like to perform next?"+"\n"
+								+ "(1) Select dice to hold, and then re-roll the other dice" +"\n"
+								+ "(2) Re-roll all the dice?" +"\n"
+								+ "(3) Score this round?" +"\n";
+							game.getPlayers()[pID-1].rollDice();
+							String dice= game.getPlayers()[pID-1].printDice();
+							out.writeUTF(dice + "\n" + choice);
+							out.flush();
+							int choicenumber =0;
+							while(true) {
+								choicenumber = in.readInt();
+								if(choicenumber==3) {
+									break;
+								}
+							}
+							if(choicenumber==3) {	
+								out.writeUTF("What category do you want to score this round against? (Please enter the category number) ");
+								game.score(in.readInt());
+								game.endTurn();
+								System.out.println("Player 2 has completed their turn");
+								turn.incrementAndGet();	
+							}
+							
+						}
+						else {
+							
+						}	
+					}
+					else if(turn.get()==3) {
+						if(pID==3) {
+							out.writeUTF(scoreboard + "\n" + enter);
+							out.flush();
+							
+							while(true) {
+								enterpressed = in.readInt();
+								if(enterpressed==100) {
+									break;
+								}
+							}
+						
+							String choice="What action would you like to perform next?"+"\n"
+								+ "(1) Select dice to hold, and then re-roll the other dice" +"\n"
+								+ "(2) Re-roll all the dice?" +"\n"
+								+ "(3) Score this round?" +"\n";
+							game.getPlayers()[pID-1].rollDice();
+							String dice= game.getPlayers()[pID-1].printDice();
+							out.writeUTF(dice + "\n" + choice);
+							out.flush();
+							int choicenumber =0;
+							while(true) {
+								choicenumber = in.readInt();
+								if(choicenumber==3||choicenumber==2) {
+									break;
+								}
+							}
+							if(choicenumber==3) {	
+								out.writeUTF("What category do you want to score this round against? (Please enter the category number) ");
+								game.score(in.readInt());
+								game.endTurn();
+								if(game.getPlayers()[2].getRound()==14) {
+									Player winner=null;
+									String winnername=null;
+									if(game.getPlayers()[0].getPoints()>game.getPlayers()[1].getPoints()&&game.getPlayers()[0].getPoints()>game.getPlayers()[2].getPoints()) {
+										winner=game.getPlayers()[0];
+										name=p1.name;
+									}
+									else if(game.getPlayers()[1].getPoints()>game.getPlayers()[2].getPoints()&&game.getPlayers()[1].getPoints()>game.getPlayers()[0].getPoints()) {
+										winner=game.getPlayers()[1];
+										name=p2.name;
+									}
+									else {
+										winner=game.getPlayers()[2];
+										name=p3.name;
+									}
+									System.out.print("game over player " + name + " wins with "+ winner.getPoints());   //make a game.getwinner();
+								}
+								else {
+									System.out.println("Player 3 has completed their turn");
+									System.out.println("Round "+(game.getPlayers()[2].getRound()-1) + " complete");
+									System.out.println("");
+									turn.decrementAndGet();
+									turn.decrementAndGet();
+								}
+							}
+							else if(choicenumber ==2) {
+								
+							}
+							
+						}
+						else {
+							
+						}	
 					}
 					
 				}
@@ -154,54 +281,6 @@ public class Server {
 			catch(IOException e) {
 				System.out.println(e);
 				}
-		}
-		
-		public void move() throws IOException {
-			String scoreboard= "--------------------------- "+ "\n"
-					+ "Name: " + p1.name + "     "
-					+ game.getPlayers()[0].printScore()
-					+ "Name: " + p2.name + "     "
-					+ game.getPlayers()[1].printScore()
-					+ "Name: " + p3.name + "     "
-					+ game.getPlayers()[2].printScore();
-			String enter = "Press <<ENTER>> to roll the dice ...";
-			int enterpressed=0;
-			
-			out.writeUTF(scoreboard + "\n" + enter);
-			out.flush();
-		
-			String choice="What action would you like to perform next?"+"\n"
-				+ "(1) Select dice to hold, and then re-roll the other dice" +"\n"
-				+ "(2) Re-roll all the dice?" +"\n"
-				+ "(3) Score this round?" +"\n";
-			game.getPlayers()[pID-1].rollDice();
-			String dice= game.getPlayers()[pID-1].printDice();
-			out.writeUTF(dice + "\n" + choice);
-			out.flush();
-			int choicenumber =0;
-			while(true) {
-				if(choicenumber==3) {	
-					out.writeUTF("What category do you want to score this round against? (Please enter the category number) ");
-					game.score(in.readInt());
-					System.out.println("Player " + this.pID + "has completed their turn");
-					game.endTurn();
-					if(pID==1||pID ==2) {
-						turn.incrementAndGet();	
-					}
-					else if(pID==3) {
-						turn.decrementAndGet();
-						turn.decrementAndGet();
-					}
-					break;
-				}	
-				else if(choicenumber==2) {
-					game.getPlayers()[pID-1].rollDice();
-					dice= game.getPlayers()[pID-1].printDice();
-					out.writeUTF(dice + "\n" + choice);
-					out.flush();
-					continue;
-				}
-			}
 		}
 	}
 	
