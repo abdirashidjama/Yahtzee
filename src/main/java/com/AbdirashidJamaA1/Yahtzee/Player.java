@@ -235,8 +235,15 @@ public class Player
 				break;
 			}
 		}
-		this.points = this.points + p;
-		this.scoreSheet.put(13, p);
+		if(this.scoreSheet.get(13)!=null&&p!=0) {
+			p=p+50;
+			this.points = this.points + p;
+			this.scoreSheet.put(15, p);
+		}
+		else {
+			this.points = this.points + p;
+			this.scoreSheet.put(13, p);
+		}
 	}
 	public void checkUpperBonus() {
 		int p=0;
@@ -302,21 +309,14 @@ public class Player
 					//System.out.flush();
 					//System.out.println(input.readUTF()); //scoreboard
 					while(true) {
-						try {  //check if other player if it is restart loop
-							//boolean other=false;
+						try { 
 							String scoreboard=input.readUTF();
-							//if(scoreboard.equals("")) {
-							//	other=true;
-							//}
+
 							System.out.println(scoreboard);    //enter and scoreboard
-							//if(other) {
-							//	input.readUTF();
-							//	continue;
-							//}
-							String enter= "sdfjnksdf";
+
+							String enter;//= "sdfjnksdf";
 							while(true) {
-								//System.out.println("");
-								//System.out.print(enter);
+
 								enter = scanner.nextLine();   ///enter
 								if(enter.equals(" ")) {
 									out.writeInt(100);
@@ -329,10 +329,10 @@ public class Player
 							if(enter.equals(" ")) {
 												//out.writeInt(100);
 												//out.flush();
-												System.out.println(input.readUTF()); //rolled die and choices
-												try {
-													
+												//System.out.println(input.readUTF()); //rolled die and choices
+												try {		
 													while(true){   //only breaks at choice
+														System.out.println(input.readUTF()); //rolled die and choices
 														int choice = scanner.nextInt();
 														if(choice==3) {
 															out.writeInt(choice);
@@ -352,6 +352,7 @@ public class Player
 														}
 														else if(choice==2) {
 															System.out.println(input.readUTF());
+															continue;
 															
 														}
 														else {
