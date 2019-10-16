@@ -1,8 +1,8 @@
 package com.AbdirashidJamaA1.Yahtzee;
 
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import static org.junit.Assert.assertEquals;
+import io.cucumber.java.en.*;
+
 
 public class UpperScoreStepDefinitions extends AbstractGameStepDefinition {
 	Game game = getGame();
@@ -25,6 +25,6 @@ public class UpperScoreStepDefinitions extends AbstractGameStepDefinition {
 	@Then("^I get (\\d+)$")
 	public void i_verify_the_in_step(int arg1) throws Throwable {
 	    // Write code here that turns the phrase above into concrete actions
-	    game.getPlayers()[0].getPoints();
+		assertEquals(arg1,game.getPlayers()[0].getPoints());
 	}
 }

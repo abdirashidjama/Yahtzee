@@ -78,7 +78,7 @@ Feature: Scoring
     Examples: 
       | dice      | score  | points  |
       | 3,4,2,5,5 |     11 | 0       |
-      | 5,5,2,5,5 |     11 | 18      |
+      | 5,5,2,5,5 |     11 | 22      |
       
   
   Scenario Outline: test full house
@@ -98,8 +98,8 @@ Feature: Scoring
 
     Examples: 
       | dice      | score  | points  |
-      | 2,4,1,5,3 |     8  | 0       |
-      | 3,4,1,5,3 |     8  | 30      |
+      | 3,4,1,5,3 |     8  | 0       |
+      | 2,4,1,1,3 |     8  | 30      |
   
   Scenario Outline: test Large Sequence
     Given I recieve these <dice>
@@ -131,10 +131,27 @@ Feature: Scoring
       | 3,4,1,5,3 |     12 | 16      |
       | 1,2,3,4,5 |     12 | 15      |
   
+  Scenario: Upper Section Bonus
+    Given I have upper section scores totalling fifty eight
+    And a hand containing containg eight points worth of two's 
+    When I score the hands as upperScore two
+    Then I should have an upper bonus score of 35
+    And my total points should be 101
+  
+  Scenario: Upper Section Bonus Zero
+    Given I have upper section scores totalling twenty five
+    And a hand containing containg eight points worth of two's 
+    When I score the hands as upperScore two
+    Then I should have an upper bonus score of 0
+    And my total points should be 33
   
   
-  
-  
+  Scenario: Yahtzee Bonus Zero
+    Given I have already scored a Yahtzee and have fifty points
+    And a hand containing a Yahtzee 
+    When I score the Yahtzee
+    Then I should have Yahtzee bonus and a total score 150 points
+
   
   
   

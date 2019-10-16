@@ -78,18 +78,28 @@ Feature: rerolls and Scorring
         |  1    | 1       |
         |  1,2  | 2       |
         |1,2,3  | 3       |
-        |1,2,3,4| 4       |
-        |2,3,4,5| 5       |
+        #|1,2,3,4| 4       |
+        #|2,3,4,5| 5       |
         |1,4    | 6       |
         |1,3    | 7       |
         |1,5    | 8       |
         |2,3    | 8       |
         |2,4    | 10      |
-        |2,5    | 11      |
+        |2,5    | 11      |s
         |3,4,5  | 12      |
         |5,4    | 13      |
       
+    Scenario Outline: test hold four dice reroll one
+      Given player recieves dice and <hold> four
+      When player rolls the four other dice that are not among the <hold>
+      And player choose <category> to score in
+      Then player get points for that <category>
       
+      Examples: 
+        | hold      | category| 
+        |2,3,4,5    | 5       |
+        |1,3,4,5    | 5       |
+
       
       
       
