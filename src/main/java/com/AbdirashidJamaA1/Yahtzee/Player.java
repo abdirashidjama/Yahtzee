@@ -235,8 +235,15 @@ public class Player
 				break;
 			}
 		}
-		this.points = this.points + p;
-		this.scoreSheet.put(13, p);
+        if(this.scoreSheet.get(13)!=null&&p!=0) {
+            p=p+50;
+            this.points = this.points + p;
+            this.scoreSheet.put(15, p);
+        }
+        else {
+            this.points = this.points + p;
+            this.scoreSheet.put(13, p);
+        }
 	}
 	public void checkUpperBonus() {
 		int p=0;
