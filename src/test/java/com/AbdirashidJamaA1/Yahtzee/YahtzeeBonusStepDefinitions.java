@@ -13,7 +13,7 @@ public class YahtzeeBonusStepDefinitions extends AbstractGameStepDefinition{
 	public void i_have_already_scored_a_Yahtzee_and_have_fifty_points() {
 	    // Write code here that turns the phrase above into concrete actions
 		SortedMap<Integer, Integer> riggedScoreSheet = new TreeMap<Integer, Integer>();
-		riggedScoreSheet.put(6, 18);
+		riggedScoreSheet.put(13, 50);
 		game.getPlayers()[0].setScoreSheet(riggedScoreSheet);
 		game.getPlayers()[0].setPoints(50);
 	}

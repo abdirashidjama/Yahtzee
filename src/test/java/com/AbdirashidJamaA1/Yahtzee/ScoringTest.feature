@@ -152,7 +152,27 @@ Feature: Scoring
     When I score the Yahtzee
     Then I should have Yahtzee bonus and a total score 150 points
 
-  
+  Scenario Outline: Score no Reroll
+    Given I recieve dice
+    When I roll dice 
+    And player choose <cat> to score
+    Then player get points for <cat> in scoresheet
+    
+    Examples: 
+        | cat     |
+        | 1       |
+        | 2       |
+        | 3       |
+        | 4       |
+        | 5       |
+        | 6       |
+        | 7       |
+        | 8       |
+        | 8       |
+        | 10      |
+        | 11      |
+        | 12      |
+        | 13      |
   
   
   
